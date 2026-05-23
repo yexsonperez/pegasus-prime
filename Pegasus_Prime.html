@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEGASUS Prime – Advanced Reversal & Risk Management System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #F2CB6A;
+    --dark: #0A0A0F;
+    --dark3: #1A1A28;
+    --card: #14141E;
+    --border: rgba(212,168,67,0.2);
+    --text: #F0EDE8;
+    --muted: #8A8AA0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.7; min-height:100vh; }
+
+  .hero { position:relative; padding:80px 40px 60px; text-align:center; border-bottom:1px solid var(--border); overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212,168,67,0.10) 0%, transparent 70%); pointer-events:none; }
+
+  .lang-bar { display:flex; justify-content:center; gap:8px; margin-bottom:40px; }
+  .lang-btn { padding:6px 18px; border:1px solid var(--border); border-radius:30px; background:transparent; color:var(--muted); font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; transition:all 0.2s; letter-spacing:0.05em; }
+  .lang-btn:hover, .lang-btn.active { background:var(--gold); color:#000; border-color:var(--gold); font-weight:500; }
+
+  .badge { display:inline-block; background:rgba(212,168,67,0.12); color:var(--gold); border:1px solid var(--border); border-radius:30px; padding:4px 16px; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px; }
+  .hero h1 { font-family:'Syne',sans-serif; font-size:clamp(28px,4vw,48px); font-weight:800; line-height:1.15; margin-bottom:12px; background:linear-gradient(135deg,#fff 40%,var(--gold-light) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-sub { font-size:clamp(14px,2vw,18px); color:var(--muted); max-width:600px; margin:0 auto 36px; }
+  .hero-tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:36px; }
+  .tag { background:var(--dark3); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:13px; color:var(--text); }
+  .cta-btn { display:inline-block; padding:14px 40px; background:var(--gold); color:#000; font-family:'Syne',sans-serif; font-weight:700; font-size:15px; border-radius:6px; text-decoration:none; letter-spacing:0.03em; transition:background 0.2s,transform 0.15s; cursor:pointer; border:none; }
+  .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+  .container { max-width:960px; margin:0 auto; padding:0 24px; }
+  .section { padding:64px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .section-label { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; font-weight:500; }
+  .section-title { font-family:'Syne',sans-serif; font-size:clamp(22px,3vw,32px); font-weight:700; margin-bottom:28px; line-height:1.2; }
+
+  .feat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:28px; }
+  .feat-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; transition:border-color 0.2s; }
+  .feat-card:hover { border-color:rgba(212,168,67,0.5); }
+  .feat-icon { font-size:28px; margin-bottom:12px; display:block; }
+  .feat-card h3 { font-family:'Syne',sans-serif; font-size:15px; font-weight:600; margin-bottom:8px; color:var(--text); }
+  .feat-card p { font-size:14px; color:var(--muted); line-height:1.6; }
+
+  .steps { margin-top:28px; }
+  .step { display:flex; gap:20px; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .step:last-child { border-bottom:none; }
+  .step-num { flex-shrink:0; width:40px; height:40px; border-radius:50%; background:rgba(212,168,67,0.12); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:700; font-size:14px; color:var(--gold); }
+  .step-body h4 { font-family:'Syne',sans-serif; font-size:16px; font-weight:600; margin-bottom:6px; }
+  .step-body p { font-size:14px; color:var(--muted); }
+  .step-body code { background:var(--dark3); padding:1px 6px; border-radius:4px; font-size:13px; color:var(--gold-light); font-family:monospace; }
+
+  .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:28px; }
+  .info-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px 24px; }
+  .info-card .ic-label { font-size:12px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+  .info-card .ic-val { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .info-card .ic-desc { font-size:13px; color:var(--muted); }
+
+  .highlight { background:rgba(212,168,67,0.07); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:20px 24px; margin:28px 0; font-size:15px; }
+  .highlight strong { color:var(--gold); }
+
+  .contact-box { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:40px; text-align:center; margin-top:28px; }
+  .contact-box p { color:var(--muted); margin-bottom:24px; font-size:15px; }
+  .contact-link { display:inline-block; padding:14px 40px; border:1px solid var(--gold); color:var(--gold); font-family:'Syne',sans-serif; font-weight:600; font-size:15px; border-radius:6px; text-decoration:none; transition:background 0.2s,color 0.2s; }
+  .contact-link:hover { background:var(--gold); color:#000; }
+
+  .warning { background:rgba(231,76,60,0.08); border:1px solid rgba(231,76,60,0.25); border-radius:10px; padding:16px 20px; font-size:13px; color:#E07070; margin-top:28px; }
+
+  .footer { padding:40px 24px; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid rgba(255,255,255,0.05); }
+
+  /* Language system — all translatable elements hidden by default */
+  .t { display:none; }
+  .t.on { display:inline; }
+  .tb { display:none; }
+  .tb.on { display:block; }
+  .tf { display:none; }
+  .tf.on { display:flex; }
+
+  @media(max-width:600px){ .hero{padding:60px 20px 40px;} .section{padding:40px 0;} .contact-box{padding:28px 20px;} }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('es')">🇪🇸 Español</button>
+    <button class="lang-btn" onclick="setLang('en')">🇺🇸 English</button>
+    <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  </div>
+
+  <div class="badge">
+    🐎 <span class="t" data-l="es">TradingView Script — Solo por Invitación</span><span class="t" data-l="en">TradingView Invite-Only Script</span><span class="t" data-l="de">TradingView Invite-Only Script</span>
+  </div>
+
+  <h1>PEGASUS Prime</h1>
+  <p class="hero-sub">Advanced Reversal &amp; Risk Management System</p>
+
+  <!-- Tags hero — fully translated -->
+  <div class="hero-tags">
+    <span class="tag"><span class="t" data-l="es">📈 Señales BUY / SELL</span><span class="t" data-l="en">📈 BUY / SELL Signals</span><span class="t" data-l="de">📈 BUY / SELL Signale</span></span>
+    <span class="tag"><span class="t" data-l="es">🛡️ Gestión de Riesgo</span><span class="t" data-l="en">🛡️ Risk Management</span><span class="t" data-l="de">🛡️ Risikomanagement</span></span>
+    <span class="tag"><span class="t" data-l="es">🎯 TP1 · TP2 · TP3</span><span class="t" data-l="en">🎯 TP1 · TP2 · TP3</span><span class="t" data-l="de">🎯 TP1 · TP2 · TP3</span></span>
+    <span class="tag"><span class="t" data-l="es">📊 Trailing Stop</span><span class="t" data-l="en">📊 Trailing Stop</span><span class="t" data-l="de">📊 Trailing Stop</span></span>
+    <span class="tag"><span class="t" data-l="es">🔔 Alertas automáticas</span><span class="t" data-l="en">🔔 Automatic Alerts</span><span class="t" data-l="de">🔔 Automatische Alerts</span></span>
+    <span class="tag"><span class="t" data-l="es">📅 Estadísticas mensuales</span><span class="t" data-l="en">📅 Monthly Statistics</span><span class="t" data-l="de">📅 Monatsstatistiken</span></span>
+  </div>
+
+  <a href="https://linktr.ee/yexsonperez" target="_blank" class="cta-btn">
+    🚀 <span class="t" data-l="es">Solicitar Acceso</span><span class="t" data-l="en">Request Access</span><span class="t" data-l="de">Zugang beantragen</span>
+  </a>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="container">
+
+  <!-- SECTION: What is it -->
+  <div class="section">
+    <div class="section-label"><span class="t" data-l="es">¿Qué es?</span><span class="t" data-l="en">What is it?</span><span class="t" data-l="de">Was ist das?</span></div>
+    <h2 class="section-title"><span class="t" data-l="es">Un sistema completo de trading con gestión inteligente del riesgo</span><span class="t" data-l="en">A complete trading system with intelligent risk management</span><span class="t" data-l="de">Ein vollständiges Handelssystem mit intelligentem Risikomanagement</span></h2>
+    <p style="color:var(--muted);max-width:700px;">
+      <span class="t" data-l="es">PEGASUS Prime es un indicador avanzado para TradingView escrito en Pine Script v6. Detecta giros del mercado tras secuencias de velas consecutivas, calcula automáticamente los niveles de entrada, stop loss y hasta 3 targets de beneficio, y gestiona el trade en tiempo real mediante trailing stop dinámico.</span>
+      <span class="t" data-l="en">PEGASUS Prime is an advanced TradingView indicator written in Pine Script v6. It detects market reversals after consecutive candle sequences, automatically calculates entry, stop-loss and up to 3 profit targets, and manages trades in real-time using a dynamic trailing stop.</span>
+      <span class="t" data-l="de">PEGASUS Prime ist ein fortschrittlicher TradingView-Indikator in Pine Script v6. Er erkennt Marktumkehrungen nach Kerzensequenzen, berechnet automatisch Einstieg, Stop-Loss und bis zu 3 Gewinnziele und verwaltet Trades in Echtzeit per dynamischem Trailing Stop.</span>
+    </p>
+
+    <div class="feat-grid">
+      <div class="feat-card"><span class="feat-icon">🐎</span>
+        <h3><span class="t" data-l="es">Vela Freno / Agotamiento</span><span class="t" data-l="en">Brake Candle / Exhaustion</span><span class="t" data-l="de">Bremskerze / Erschöpfung</span></h3>
+        <p><span class="t" data-l="es">Detecta patrones de reversión tras N velas consecutivas. Filtra por tamaño, cuerpo, volumen y momentum.</span><span class="t" data-l="en">Detects reversal patterns after N consecutive candles. Filtered by size, body, volume and momentum.</span><span class="t" data-l="de">Erkennt Umkehrmuster nach N aufeinanderfolgenden Kerzen. Gefiltert nach Größe, Körper, Volumen und Momentum.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">🎯</span>
+        <h3><span class="t" data-l="es">3 Targets de Beneficio</span><span class="t" data-l="en">3 Profit Targets</span><span class="t" data-l="de">3 Gewinnziele</span></h3>
+        <p><span class="t" data-l="es">TP1 cierra el 50% de la posición. TP2 mueve el SL a TP1. TP3 cierra el resto. Todo automático.</span><span class="t" data-l="en">TP1 closes 50% of the position. TP2 moves SL to TP1. TP3 closes the rest. Fully automated.</span><span class="t" data-l="de">TP1 schließt 50% der Position. TP2 verschiebt den SL auf TP1. TP3 schließt den Rest. Vollautomatisch.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">🛡️</span>
+        <h3><span class="t" data-l="es">SL Inteligente</span><span class="t" data-l="en">Intelligent Stop Loss</span><span class="t" data-l="de">Intelligenter Stop-Loss</span></h3>
+        <p><span class="t" data-l="es">Stop Loss por ATR, vela freno o el mayor de ambos. Trailing dinámico bar a bar tras TP1.</span><span class="t" data-l="en">ATR-based, brake candle-based or maximum of both. Dynamic trailing bar-by-bar after TP1.</span><span class="t" data-l="de">ATR-basiert, Bremskerzen-basiert oder Maximum beider. Dynamischer Trailing Kerze für Kerze nach TP1.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📊</span>
+        <h3><span class="t" data-l="es">Zonas S/R</span><span class="t" data-l="en">S/R Zones</span><span class="t" data-l="de">S/R-Zonen</span></h3>
+        <p><span class="t" data-l="es">Detección automática de soporte y resistencia (Swing, Pivotes o Consolidación). Bloquea, invierte o alerta señales.</span><span class="t" data-l="en">Automatic support & resistance detection (Swing, Pivots or Consolidation). Block, invert or warn on zone signals.</span><span class="t" data-l="de">Automatische Unterstützungs- und Widerstandserkennung. Signale blockieren, invertieren oder warnen.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">⏱️</span>
+        <h3><span class="t" data-l="es">Filtro de Horario</span><span class="t" data-l="en">Session Filter</span><span class="t" data-l="de">Sitzungsfilter</span></h3>
+        <p><span class="t" data-l="es">Opera solo en la sesión que elijas. Soporte para múltiples zonas horarias: Europa, NY, Asia y más.</span><span class="t" data-l="en">Trade only during your preferred session. Multi-timezone support: Europe, NY, Asia and more.</span><span class="t" data-l="de">Handle nur in deiner bevorzugten Sitzung. Mehrere Zeitzonen werden unterstützt.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">🔔</span>
+        <h3><span class="t" data-l="es">Alertas JSON + Análisis</span><span class="t" data-l="en">JSON Alerts + Analysis</span><span class="t" data-l="de">JSON-Alerts + Analyse</span></h3>
+        <p><span class="t" data-l="es">Alertas estructuradas para bots + mensajes de análisis con calidad de vela, contexto y R:R.</span><span class="t" data-l="en">Structured alerts for bots + full analysis messages with candle quality, context and R:R.</span><span class="t" data-l="de">Strukturierte Alerts für Bots + vollständige Analysemeldungen mit Kerzenqualität und R:R.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📈</span>
+        <h3><span class="t" data-l="es">Velas Superiores (HC)</span><span class="t" data-l="en">Higher Candles (HC)</span><span class="t" data-l="de">Höhere Kerzen (HC)</span></h3>
+        <p><span class="t" data-l="es">Visualiza 3 velas de temporalidades mayores en el gráfico para confirmar tendencia.</span><span class="t" data-l="en">Visualize 3 higher timeframe candles directly on the chart to confirm trend direction.</span><span class="t" data-l="de">Visualisiere 3 Kerzen höherer Zeitrahmen im Chart zur Trendbestätigung.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📅</span>
+        <h3><span class="t" data-l="es">Estadísticas Mensuales</span><span class="t" data-l="en">Monthly Statistics</span><span class="t" data-l="de">Monatsstatistiken</span></h3>
+        <p><span class="t" data-l="es">Tabla de resultados por mes: trades, W/L, win rate, puntos netos y R acumulada.</span><span class="t" data-l="en">Monthly results table: trades, W/L, win rate, net points and cumulative R.</span><span class="t" data-l="de">Monatliche Ergebnistabelle: Trades, W/L, Trefferquote, Nettopunkte und kumuliertes R.</span></p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">🔬</span>
+        <h3><span class="t" data-l="es">Filtros Avanzados</span><span class="t" data-l="en">Advanced Filters</span><span class="t" data-l="de">Erweiterte Filter</span></h3>
+        <p><span class="t" data-l="es">RSI, ADX, Volumen, Calidad de vela, EMA, Cloud, Impulso por regresión lineal. Actívalos a tu gusto.</span><span class="t" data-l="en">RSI, ADX, Volume, Candle Quality, EMA, Cloud, Linear Regression Momentum. Enable or disable freely.</span><span class="t" data-l="de">RSI, ADX, Volumen, Kerzenqualität, EMA, Cloud, lineare Regressions-Momentum. Nach Wunsch aktivierbar.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: Access & Terms -->
+  <div class="section">
+    <div class="section-label"><span class="t" data-l="es">Acceso &amp; Condiciones</span><span class="t" data-l="en">Access &amp; Terms</span><span class="t" data-l="de">Zugang &amp; Bedingungen</span></div>
+    <h2 class="section-title"><span class="t" data-l="es">¿Cómo funciona el acceso?</span><span class="t" data-l="en">How does access work?</span><span class="t" data-l="de">Wie funktioniert der Zugang?</span></h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label"><span class="t" data-l="es">Tipo de acceso</span><span class="t" data-l="en">Access type</span><span class="t" data-l="de">Zugriffstyp</span></div>
+        <div class="ic-val">🔐 <span class="t" data-l="es">Por invitación</span><span class="t" data-l="en">Invite-only</span><span class="t" data-l="de">Nur auf Einladung</span></div>
+        <div class="ic-desc"><span class="t" data-l="es">Indicador de tipo invite-only en TradingView. El autor aprueba manualmente cada usuario.</span><span class="t" data-l="en">An invite-only indicator on TradingView. The author manually approves each user.</span><span class="t" data-l="de">Ein Invite-Only-Indikator auf TradingView. Der Autor genehmigt jeden Benutzer manuell.</span></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label"><span class="t" data-l="es">Período de prueba</span><span class="t" data-l="en">Trial period</span><span class="t" data-l="de">Testphase</span></div>
+        <div class="ic-val">⏳ 10 <span class="t" data-l="es">días</span><span class="t" data-l="en">days</span><span class="t" data-l="de">Tage</span></div>
+        <div class="ic-desc"><span class="t" data-l="es">Semana de testing de 10 días para usuarios que soliciten acceso desde TradingView.</span><span class="t" data-l="en">A 10-day testing trial for users who request access through TradingView.</span><span class="t" data-l="de">10-tägige Testphase für Nutzer, die über TradingView Zugang beantragen.</span></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label"><span class="t" data-l="es">Modalidad de pago</span><span class="t" data-l="en">Payment model</span><span class="t" data-l="de">Zahlungsmodell</span></div>
+        <div class="ic-val">📆 <span class="t" data-l="es">Mensual</span><span class="t" data-l="en">Monthly</span><span class="t" data-l="de">Monatlich</span></div>
+        <div class="ic-desc"><span class="t" data-l="es">El acceso se renueva mensualmente y se activa una vez confirmado el pago.</span><span class="t" data-l="en">Access is renewed monthly and activated once payment is confirmed and verified.</span><span class="t" data-l="de">Der Zugang wird monatlich erneuert und nach Zahlungsbestätigung aktiviert.</span></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label"><span class="t" data-l="es">Autor en TradingView</span><span class="t" data-l="en">Author on TradingView</span><span class="t" data-l="de">Autor auf TradingView</span></div>
+        <div class="ic-val">👤 yexsonperez</div>
+        <div class="ic-desc"><span class="t" data-l="es">Busca el indicador bajo este usuario en la plataforma TradingView.</span><span class="t" data-l="en">Find the indicator under this username on the TradingView platform.</span><span class="t" data-l="de">Finde den Indikator unter diesem Benutzernamen auf TradingView.</span></div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>⚠️ <span class="t" data-l="es">Importante:</span><span class="t" data-l="en">Note:</span><span class="t" data-l="de">Wichtig:</span></strong>
+      <span class="t" data-l="es">El acceso será aprobado <strong>una vez sea confirmado y comprobado el pago</strong>. Para conocer los métodos de pago, contacta al autor directamente.</span>
+      <span class="t" data-l="en">Access will be approved <strong>once payment is confirmed and verified</strong>. Contact the author for available payment methods.</span>
+      <span class="t" data-l="de">Der Zugang wird <strong>nach Bestätigung der Zahlung</strong> freigeschaltet. Kontaktiere den Autor für verfügbare Zahlungsmethoden.</span>
+    </div>
+  </div>
+
+  <!-- SECTION: Step-by-step -->
+  <div class="section">
+    <div class="section-label"><span class="t" data-l="es">Guía paso a paso</span><span class="t" data-l="en">Step-by-step guide</span><span class="t" data-l="de">Schritt-für-Schritt-Anleitung</span></div>
+    <h2 class="section-title"><span class="t" data-l="es">Cómo agregar PEGASUS Prime a tu gráfico</span><span class="t" data-l="en">How to add PEGASUS Prime to your chart</span><span class="t" data-l="de">So fügst du PEGASUS Prime zum Chart hinzu</span></h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Contacta al autor y realiza el pago</span><span class="t" data-l="en">Contact the author and complete payment</span><span class="t" data-l="de">Kontaktiere den Autor und schließe die Zahlung ab</span></h4>
+          <p><span class="t" data-l="es">Visita el enlace de contacto, consulta los métodos de pago disponibles y completa el proceso. Una vez confirmado el pago, el autor te agregará a la lista de usuarios autorizados.</span><span class="t" data-l="en">Visit the contact link, ask about available payment methods and complete the process. Once payment is confirmed, the author will add you to the approved user list on TradingView.</span><span class="t" data-l="de">Besuche den Kontakt-Link, frage nach Zahlungsmethoden und schließe den Vorgang ab. Nach Bestätigung wirst du zur genehmigten Benutzerliste hinzugefügt.</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Inicia sesión en TradingView</span><span class="t" data-l="en">Log in to TradingView</span><span class="t" data-l="de">Bei TradingView anmelden</span></h4>
+          <p><span class="t" data-l="es">Accede a <code>tradingview.com</code> con tu cuenta. Cualquier plan (incluyendo el gratuito) te permite usar indicadores invite-only aprobados por el autor.</span><span class="t" data-l="en">Go to <code>tradingview.com</code> and sign in. Any plan (including free) allows you to use invite-only indicators once approved by the author.</span><span class="t" data-l="de">Gehe zu <code>tradingview.com</code> und melde dich an. Jeder Plan erlaubt die Nutzung von Invite-Only-Indikatoren nach Freigabe.</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Abre cualquier gráfico</span><span class="t" data-l="en">Open any chart</span><span class="t" data-l="de">Öffne ein beliebiges Chart</span></h4>
+          <p><span class="t" data-l="es">Haz clic en <code>Gráfico</code> en el menú superior para abrir el editor de gráficos.</span><span class="t" data-l="en">Click on <code>Chart</code> in the top menu to open TradingView's chart editor.</span><span class="t" data-l="de">Klicke im Hauptmenü auf <code>Chart</code>, um den Chart-Editor zu öffnen.</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Haz clic en "Indicadores" (o presiona <code>/</code>)</span><span class="t" data-l="en">Click "Indicators" (or press <code>/</code>)</span><span class="t" data-l="de">Klicke auf "Indikatoren" (oder drücke <code>/</code>)</span></h4>
+          <p><span class="t" data-l="es">En la barra superior del gráfico encontrarás el botón de Indicadores. También puedes presionar la tecla <code>/</code> como atajo.</span><span class="t" data-l="en">In the top chart bar you'll find the Indicators button. You can also press <code>/</code> as a keyboard shortcut.</span><span class="t" data-l="de">In der oberen Chart-Leiste findest du die Schaltfläche Indikatoren. Alternativ kannst du <code>/</code> drücken.</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Ve a la pestaña "Scripts por invitación"</span><span class="t" data-l="en">Go to the "Invite-Only Scripts" tab</span><span class="t" data-l="de">Wechsle zum Tab "Invite-Only Scripts"</span></h4>
+          <p><span class="t" data-l="es">En el menú de indicadores verás la pestaña <code>Scripts por invitación</code>. Esta pestaña solo aparece si tienes acceso a al menos un indicador de este tipo. ¡Busca PEGASUS Prime allí!</span><span class="t" data-l="en">In the indicators menu you'll see the <code>Invite-Only Scripts</code> tab. This tab only appears if you have access to at least one such indicator. Look for PEGASUS Prime there!</span><span class="t" data-l="de">Im Indikatormenü siehst du den Tab <code>Invite-Only Scripts</code>. Er erscheint nur, wenn du mindestens einen solchen Indikator freigeschaltet hast. Suche dort nach PEGASUS Prime!</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4><span class="t" data-l="es">Haz clic en PEGASUS Prime — ¡listo!</span><span class="t" data-l="en">Click on PEGASUS Prime — you're done!</span><span class="t" data-l="de">Klicke auf PEGASUS Prime – fertig!</span></h4>
+          <p><span class="t" data-l="es">Selecciona el indicador y se añadirá automáticamente al gráfico. <strong>Nota:</strong> Si acabas de recibir acceso, puede tardar unos minutos. Si no aparece, cierra sesión, vuelve a iniciarla o borra la caché del navegador.</span><span class="t" data-l="en">Select the indicator and it will be automatically added to your chart. <strong>Note:</strong> If you just received access it may take a few minutes. Try logging out and back in, or clearing your browser cache if it doesn't show.</span><span class="t" data-l="de">Wähle den Indikator aus und er wird automatisch zum Chart hinzugefügt. <strong>Hinweis:</strong> Nach Freischaltung kann es einige Minuten dauern. Melde dich ab und wieder an, falls er nicht erscheint.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: Contact -->
+  <div class="section">
+    <div class="section-label"><span class="t" data-l="es">Contacto</span><span class="t" data-l="en">Contact</span><span class="t" data-l="de">Kontakt</span></div>
+    <h2 class="section-title"><span class="t" data-l="es">¿Listo para empezar? 🚀</span><span class="t" data-l="en">Ready to get started? 🚀</span><span class="t" data-l="de">Bereit anzufangen? 🚀</span></h2>
+
+    <div class="contact-box">
+      <p>
+        <span class="t" data-l="es">Para solicitar acceso o conocer los métodos de pago disponibles, contáctame directamente a través de mi enlace oficial. Respondo todos los mensajes personalmente.</span>
+        <span class="t" data-l="en">To request access or learn about available payment methods, contact me directly via my official link. I personally respond to all messages.</span>
+        <span class="t" data-l="de">Um Zugang zu beantragen oder mehr über Zahlungsmethoden zu erfahren, kontaktiere mich direkt über meinen offiziellen Link. Ich antworte persönlich auf alle Nachrichten.</span>
+      </p>
+      <a href="https://linktr.ee/yexsonperez" target="_blank" class="contact-link">🔗 linktr.ee/yexsonperez</a>
+      <p style="margin-top:20px; font-size:13px; color:var(--muted);">
+        <span class="t" data-l="es">También puedes buscar el perfil <strong style="color:var(--gold);">@yexsonperez</strong> directamente en TradingView</span>
+        <span class="t" data-l="en">You can also search for the profile <strong style="color:var(--gold);">@yexsonperez</strong> directly on TradingView</span>
+        <span class="t" data-l="de">Du kannst auch direkt auf TradingView nach dem Profil <strong style="color:var(--gold);">@yexsonperez</strong> suchen</span>
+      </p>
+    </div>
+
+    <div class="warning">
+      ⚠️ <strong><span class="t" data-l="es">Aviso de riesgo:</span><span class="t" data-l="en">Risk disclosure:</span><span class="t" data-l="de">Risikohinweis:</span></strong>
+      <span class="t" data-l="es">Este indicador es una herramienta de análisis técnico. No constituye asesoramiento financiero ni garantía de resultados. Operar en mercados financieros implica riesgo de pérdida. Opera siempre con capital que puedas permitirte perder.</span>
+      <span class="t" data-l="en">This indicator is a technical analysis tool. It does not constitute financial advice or a guarantee of results. Trading financial markets involves risk of loss. Always trade with capital you can afford to lose.</span>
+      <span class="t" data-l="de">Dieser Indikator ist ein technisches Analysewerkzeug. Er stellt keine Finanzberatung dar und garantiert keine Ergebnisse. Der Handel an Finanzmärkten birgt Verlustrisiken. Handle nur mit Kapital, dessen Verlust du dir leisten kannst.</span>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p>PEGASUS Prime &mdash; Advanced Reversal &amp; Risk Management System &mdash; by <a href="https://linktr.ee/yexsonperez" style="color:var(--gold);text-decoration:none;">@yexsonperez</a></p>
+  <p style="margin-top:6px;font-size:11px;opacity:0.5;">Pine Script v6 &bull; TradingView Invite-Only &bull; 2026</p>
+</div>
+
+<script>
+function setLang(lang) {
+  // Show/hide all translatable spans
+  document.querySelectorAll('.t[data-l]').forEach(el => {
+    el.classList.toggle('on', el.getAttribute('data-l') === lang);
+  });
+  // Active button
+  document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', ['es','en','de'][i] === lang);
+  });
+  // Store current lang
+  document.documentElement.lang = lang;
+}
+// Init on load
+setLang('es');
+</script>
+</body>
+</html>
